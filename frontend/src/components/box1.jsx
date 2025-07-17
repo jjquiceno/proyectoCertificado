@@ -38,7 +38,7 @@ export const Box2 = ({ mainIcon, title, cantidad, box3 }) => {
 }
 export const Box3 = ({ icono, titulo, texto, prioridad, fecha }) => {
     return (
-        <div className='border border-[#e0ddd8] border-l-5 border-l-[#a67c52] w-full h-[8vw] pl-2 pr-6 pt-3 pb-3 rounded-xl shadow-md hover:shadow-lg transition duration-300 hover:translate-y-[-8px]'>
+        <div className='border border-[#e0ddd8] border-l-5 border-l-[#a67c52] w-[28vw] h-[8vw] pl-2 pr-6 pt-3 pb-3 rounded-xl shadow-md hover:shadow-lg transition duration-300 hover:translate-y-[-8px] cursor-move'>
             <div className='grid grid-cols-[10%_10%_60%_20%] h-full'>
                 <div className='h-full'>
                     <div className='m-auto grid grid-cols-2 h-fit w-fit gap-1'>
@@ -57,7 +57,7 @@ export const Box3 = ({ icono, titulo, texto, prioridad, fecha }) => {
                     <p className='text-[#3f3f3f] text-[1.2vw] font-bold'>{titulo}</p>
                     <p className='text-[#6b6b6b] text-[1vw]'>{texto}</p>
                     <div className='mt-2 flex items-center gap-2 pl-2'>
-                        <p className='text-[#a67c52] font-semibold text-[1vw] rounded-full bg-[#f7e9e8] w-[4vw] h-[7vh] flex items-center justify-center'>{prioridad}</p>
+                        <p className='text-[#a67c52] font-semibold text-[1vw] rounded-full bg-[#f7e9e8] w-[4vw] h-[4vh] flex items-center justify-center'>{prioridad}</p>
                         <span className='text-[#a67c52] font-semibold text-[1vw]'>{fecha}</span>
                     </div>
                 </div>

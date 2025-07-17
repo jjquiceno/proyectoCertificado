@@ -1,10 +1,10 @@
-import React from 'react'
-import { Button } from '../components/buttons'
-import { Box1, Box2, Box3 } from '../components/box1'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBullseye, faChartSimple } from '@fortawesome/free-solid-svg-icons'
-import { faCircleCheck, faClock, faCircle, faCalendar } from '@fortawesome/free-regular-svg-icons'
+import React from 'react';
+import { Button } from '../components/buttons';
+import { Box1 } from '../components/box1';
+import { Box2DnD } from '../components/box2DnD';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBullseye, faChartSimple } from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck, faClock, faCircle } from '@fortawesome/free-regular-svg-icons';
 
 const Tasks = () => {
   return (
@@ -52,9 +52,9 @@ const Tasks = () => {
             </div>
             <br />
             <div className='flex items-center justify-between h-fit'>
-                <Box2 mainIcon={<FontAwesomeIcon icon={faCircle} />} title="Total" cantidad="10" box3={<Box3 icono={<FontAwesomeIcon icon={faCircle} />} titulo="Tarea 1" texto="Tarea 1" prioridad="Alta" fecha={<FontAwesomeIcon icon={faCalendar} />} />}/> 
-                <Box2 mainIcon={<FontAwesomeIcon icon={faCircleCheck} />} title="Completadas" cantidad="10" />
-                <Box2 mainIcon={<FontAwesomeIcon icon={faClock} />} title="En Proceso" cantidad="10" />
+                <Box2DnD colKey="total" mainIcon={<FontAwesomeIcon icon={faCircle} />} title="Total" />
+                <Box2DnD colKey="completadas" mainIcon={<FontAwesomeIcon icon={faCircleCheck} />} title="Completadas" />
+                <Box2DnD colKey="enproceso" mainIcon={<FontAwesomeIcon icon={faClock} />} title="En Proceso" />
             </div>
         </div>
     </div>
