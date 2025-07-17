@@ -16,6 +16,12 @@ const Home = () => {
           Conoce mas sobre nosotros
         </button>
       </Link>
+      <br />
+      <Link to="/tasks">
+        <button className="bg-[#a67c52] text-white px-6 py-3 rounded-md shadow hover:bg-[#916640] transition duration-300">
+          Tareas
+        </button>
+      </Link>
     </div>
   );
 };
