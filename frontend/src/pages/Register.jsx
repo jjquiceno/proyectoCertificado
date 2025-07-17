@@ -1,41 +1,93 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { TextField, Button } from "@radix-ui/themes";
+
+
 
 const Register = () => {
+  const navigate = useNavigate();
+
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const respuesta = await fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password
+        })
+      });
+
+      const data = await respuesta.json();
+
+      if (respuesta.ok) {
+        console.log('Registro exitoso:', data);
+        alert('Cuenta creada con éxito');
+        // // ✅ Redirigir a otra ruta (por ejemplo: /bienvenida)
+        navigate('/login');
+      } else {
+        alert(data.message);
+        console.error('Error en el register:', data.message);
+      }
+    } catch (error) {
+      console.error('Error de red o servidor:', error);
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#fdfaf6] text-[#3f3f3f] px-4">
-      <h1 className="text-3xl font-semibold mb-6">Crear una cuenta</h1>
-      <form className="bg-white p-8 rounded-lg shadow-md w-full max-w-md space-y-4 border border-[#e0ddd8]">
-        <div>
-          <label className="block mb-2 text-sm font-medium">Nombre</label>
-          <input
-            type="text"
-            className="w-full p-3 border border-[#d6d3cc] rounded bg-[#fdfaf6] focus:outline-none focus:ring-2 focus:ring-[#a67c52]"
-          />
-        </div>
+    <div className="flex flex-col items-center min-h-screen bg-[#f5f3ef] text-[#3f3f3f] px-4">
 
-        <div>
-          <label className="block mb-2 text-sm font-medium">Correo electrónico</label>
-          <input
-            type="email"
-            className="w-full p-3 border border-[#d6d3cc] rounded bg-[#fdfaf6] focus:outline-none focus:ring-2 focus:ring-[#a67c52]"
-          />
-        </div>
+      <img src="/Logo.png" alt="" className='w-20 h-20 mt-[10vh]' />
 
-        <div>
-          <label className="block mb-2 text-sm font-medium">Contraseña</label>
-          <input
-            type="password"
-            className="w-full p-3 border border-[#d6d3cc] rounded bg-[#fdfaf6] focus:outline-none focus:ring-2 focus:ring-[#a67c52]"
-          />
-        </div>
+      <h1 className="text-4xl text-[#696D59] font-semibold mb-2">Crear Cuenta</h1>
+      <p className="text-[#6b4e37] mb-8 text-lg">
+        Únete a la comunidad zen
+      </p>
+      <div className='bg-white p-8 rounded-lg shadow-md w-full max-w-md text-center'>
+        <h1 className="text-2xl font-bold mb-2">
+          Registro
+        </h1>
+        <p className="text-[#6b4e37] mb-8">
+          Crea tu cuenta para comenzar
+        </p>
+        <form className='text-left'>
+          <div className='mb-4'>
+            <label className="mb-2 text-sm font-bold">Nombre</label>
+            <TextField.Root placeholder="Tu nombre" value={name}
+              onChange={(e) => setName(e.target.value)}></TextField.Root>
+          </div>
 
-        <button
-          type="submit"
-          className="w-full bg-[#a67c52] text-white py-3 rounded hover:bg-[#916640] transition duration-300"
-        >
-          Registrarse
-        </button>
-      </form>
+          <div className='mb-4'>
+            <label className="mb-2 text-sm font-bold">Email</label>
+            <TextField.Root placeholder="tu@email.com" value={email}
+              onChange={(e) => setEmail(e.target.value)}></TextField.Root>
+          </div>
+
+          <div className='mb-4'>
+            <label className="mb-2 text-sm font-bold">Contraseña</label>
+            <TextField.Root type="password"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}></TextField.Root>
+          </div>
+          <Button onClick={handleSubmit} radius="large" color="brown" size="2" variant="soft" className='w-[20vw]'>
+            Crear cuenta
+          </Button>
+
+        </form>
+      </div>
+
     </div>
   );
 };

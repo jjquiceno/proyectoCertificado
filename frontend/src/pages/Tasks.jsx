@@ -11,8 +11,8 @@ const Tasks = () => {
     <div>
         <div className=''>
             <div>
-                <h1 className="h-fit pb-2 text-4xl font-bold bg-gradient-to-r from-[#b78b6e] to-[#6f725b] text-transparent bg-clip-text">
-                    ¡Hola, juan! 👽
+                <h1 className="h-fit pb-2 text-4xl font-bold text-[#6f725b]">
+                    ¡Hola, juan! ꕥ
                 </h1>
             </div>
             <div className="flex items-center justify-between">
