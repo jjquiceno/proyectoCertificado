@@ -69,3 +69,15 @@ export const Box3 = ({ icono, titulo, texto, prioridad, fecha }) => {
         </div>
     )
 }  
+
+
+export const BoxAbout = ({img, title, parr}) => {
+  return (
+    <div className='flex flex-col items-start text-left w-[20vw] gap-4  p-4 bg-white rounded-lg shadow-lg shadow-gray-300'>
+        <img src={img} alt="" className='w-10 h-10' />
+        <h1 className='font-bold '>{title}</h1>
+        <p className='text-sm'>{parr}</p>
+    </div>
+  )
+}
+

@@ -3,14 +3,21 @@ import { Button } from '../components/buttons';
 import { Box1 } from '../components/box1';
 import { Box2DnD } from '../components/box2DnD';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBullseye, faChartSimple } from '@fortawesome/free-solid-svg-icons';
-import { faCircleCheck, faClock, faCircle } from '@fortawesome/free-regular-svg-icons';
+import { faBullseye, faChartSimple, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck, faClock, faCircle, } from '@fortawesome/free-regular-svg-icons';
 
-
+import { useNavigate } from 'react-router-dom';
 
 const Tasks = () => {
+
+    const navigate = useNavigate();
+
     const nombre = localStorage.getItem('userName');
 
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/login');
+    };
     return (
         <div>
             <div className=''>
@@ -18,6 +25,7 @@ const Tasks = () => {
                     <h1 className="h-fit pb-2 text-4xl font-bold text-[#6f725b]">
                         ¡Hola, {nombre}! ꕥ
                     </h1>
+                    <FontAwesomeIcon icon={faRightFromBracket} className='cursor-pointer' onClick={handleLogout} />
                 </div>
                 <div className="flex items-center justify-between">
                     <p className="overline h-fit text-lg text-[#6f725b]">
@@ -57,8 +65,8 @@ const Tasks = () => {
                 <br />
                 <div className='flex items-center justify-between h-fit'>
                     <Box2DnD colKey="total" mainIcon={<FontAwesomeIcon icon={faCircle} />} title="Total" />
-                    <Box2DnD colKey="completadas" mainIcon={<FontAwesomeIcon icon={faCircleCheck} />} title="Completadas" />
                     <Box2DnD colKey="enproceso" mainIcon={<FontAwesomeIcon icon={faClock} />} title="En Proceso" />
+                    <Box2DnD colKey="completadas" mainIcon={<FontAwesomeIcon icon={faCircleCheck} />} title="Completadas" />
                 </div>
             </div>
         </div>
