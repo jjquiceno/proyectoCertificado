@@ -28,6 +28,11 @@ const Login = () => {
       const data = await respuesta.json();
 
       if (respuesta.ok) {
+
+        localStorage.setItem('userName', data.name);
+        localStorage.setItem('userEmail', data.email);
+        localStorage.setItem('userId', data.id);
+
         console.log('Inicio de sesion exitoso:', data);
         navigate('/tasks');
       } else {
@@ -41,13 +46,13 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-[#f5f3ef] text-[#3f3f3f] px-4">
-      
-      <img src="/Logo.png" alt="" className='w-20 h-20 mt-[15vh]'/>
-      
+
+      <img src="/Logo.png" alt="" className='w-20 h-20 mt-[15vh]' />
+
       <h1 className="text-4xl text-[#696D59] font-semibold mb-2">Iniciar sesión</h1>
       <p className="text-[#6b4e37] mb-8 text-lg">
-          Accede a tu espacio Zen
-        </p>
+        Accede a tu espacio Zen
+      </p>
       <div className='bg-white p-8 rounded-lg shadow-md w-full max-w-md text-center'>
         <h1 className="text-2xl font-bold mb-2">
           Bienvenido
