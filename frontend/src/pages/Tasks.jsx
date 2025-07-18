@@ -7,11 +7,16 @@ import { Box2DnD } from '../components/box2DnD';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBullseye, faChartSimple, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faCircleCheck, faClock, faCircle, } from '@fortawesome/free-regular-svg-icons';
-
+ 
 import { HeaderTasks } from '../components/Header';
 
-const Tasks = () => {
+import { useTasksStore } from '../store/useTasksStore';
 
+const Tasks = () => {
+    const columns = useTasksStore((state) => state.columns);
+    const totalTareas = Object.values(columns).reduce((acc, arr) => acc + arr.length, 0);
+    const completadas = columns['completadas'] ? columns['completadas'].length : 0;
+    const enproceso = columns['enproceso'] ? columns['enproceso'].length : 0;
 
     const nombre = localStorage.getItem('userName');
 
@@ -35,29 +40,23 @@ const Tasks = () => {
             <br />
             <div className=''>
                 <div className='flex items-center justify-between'>
-                    <Box1
-                        titulo="Total"
-                        numero="10"
-                        texto="Tareas"
-                        icono={<FontAwesomeIcon icon={faBullseye} />}
+                    <Box1 
+                        titulo="Total" 
+                        numero={totalTareas} 
+                        texto="Tareas" 
+                        icono={<FontAwesomeIcon icon={faBullseye} />} 
                     />
-                    <Box1
-                        titulo="Completadas"
-                        numero="10"
-                        texto="Tareas"
-                        icono={<FontAwesomeIcon icon={faCircleCheck} />}
+                    <Box1 
+                        titulo="En Proceso" 
+                        numero={enproceso} 
+                        texto="Tareas" 
+                        icono={<FontAwesomeIcon icon={faClock} />} 
                     />
-                    <Box1
-                        titulo="En Proceso"
-                        numero="10"
-                        texto="Tareas"
-                        icono={<FontAwesomeIcon icon={faClock} />}
-                    />
-                    <Box1
-                        titulo="Progreso"
-                        numero="10"
-                        texto="Tareas"
-                        icono={<FontAwesomeIcon icon={faChartSimple} />}
+                    <Box1 
+                        titulo="Completadas" 
+                        numero={completadas} 
+                        texto="Tareas" 
+                        icono={<FontAwesomeIcon icon={faCircleCheck} />} 
                     />
                 </div>
                 <br />
