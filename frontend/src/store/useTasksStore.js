@@ -3,11 +3,11 @@ import { create } from 'zustand';
 // Ejemplo de tareas iniciales
 const initialColumns = {
   'total': [
-    { id: 't1', titulo: 'Tarea 1', texto: 'Descripción 1', prioridad: 'Alta', icono: null, fecha: '' },
-    { id: 't2', titulo: 'Tarea 2', texto: 'Descripción 2', prioridad: 'Media', icono: null, fecha: '' },
+    // { id: 't1', titulo: 'Tarea 1', texto: 'Descripción 1', prioridad: 'Alta', icono: null, fecha: '' },
+    // { id: 't2', titulo: 'Tarea 2', texto: 'Descripción 2', prioridad: 'Media', icono: null, fecha: '' },
   ],
   'completadas': [
-    { id: 't3', titulo: 'Tarea 3', texto: 'Descripción 3', prioridad: 'Baja', icono: null, fecha: '' },
+    // { id: 't3', titulo: 'Tarea 3', texto: 'Descripción 3', prioridad: 'Baja', icono: null, fecha: '' },
   ],
   'enproceso': [],
 };
@@ -33,4 +33,12 @@ export const useTasksStore = create((set) => ({
         draggingTaskId: null,
       };
     }),
+
+  addTask: (colKey, nuevaTarea) =>
+    set((state) => ({
+      columns: {
+        ...state.columns,
+        [colKey]: [...state.columns[colKey], nuevaTarea],
+      },
+    })),
 }));

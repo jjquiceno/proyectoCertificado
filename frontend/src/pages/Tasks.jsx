@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+
 import { Button } from '../components/buttons';
 import { Box1 } from '../components/box1';
 import { Box2DnD } from '../components/box2DnD';
@@ -10,7 +12,6 @@ import { HeaderTasks } from '../components/Header';
 
 const Tasks = () => {
 
-    
 
     const nombre = localStorage.getItem('userName');
 
@@ -22,7 +23,7 @@ const Tasks = () => {
                     <h1 className="h-fit pb-2 text-4xl font-bold text-[#6f725b]">
                         ¡Hola, {nombre}! ꕥ
                     </h1>
-                    
+
                 </div>
                 <div className="flex items-center justify-between">
                     <p className="overline h-fit text-lg text-[#6f725b]">
@@ -61,7 +62,7 @@ const Tasks = () => {
                 </div>
                 <br />
                 <div className='flex items-center justify-between h-fit'>
-                    <Box2DnD colKey="total" mainIcon={<FontAwesomeIcon icon={faCircle} />} title="Total" />
+                    <Box2DnD colKey="total" mainIcon={<FontAwesomeIcon icon={faCircle} />} title="Por hacer" />
                     <Box2DnD colKey="enproceso" mainIcon={<FontAwesomeIcon icon={faClock} />} title="En Proceso" />
                     <Box2DnD colKey="completadas" mainIcon={<FontAwesomeIcon icon={faCircleCheck} />} title="Completadas" />
                 </div>

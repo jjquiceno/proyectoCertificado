@@ -2,6 +2,7 @@ import React from 'react';
 import { cn } from '../utils/cn';
 import { Box3 } from './box1';
 import { useTasksStore } from '../store/useTasksStore';
+import { CrearTareaModal } from './CrearTareaModal';
 
 export const Box2DnD = ({ colKey, mainIcon, title }) => {
   const { columns, moveTask, draggingTaskId, setDraggingTaskId } = useTasksStore();
@@ -25,6 +26,19 @@ export const Box2DnD = ({ colKey, mainIcon, title }) => {
   // Highlight drop target
   const isOver = draggingTaskId && draggingTaskId !== null;
 
+  const handleAddTask = () => {
+    const nuevaTarea = {
+      id: uuidv4(),
+      titulo: `Nueva tarea`,
+      texto: 'Descripción rápida...',
+      prioridad: 'Media',
+      icono: null,
+      fecha: new Date().toISOString().split('T')[0], // fecha de hoy
+    };
+
+    addTask(colKey, nuevaTarea);
+  };
+
   return (
     <div
       className={cn(
@@ -40,7 +54,7 @@ export const Box2DnD = ({ colKey, mainIcon, title }) => {
           <h1 className='text-[#3f3f3f] text-xl font-bold tracking-wider'><span>{title}</span></h1>
           <p className='text-[#a67c52] font-bold text-[1vw]'><span>({tareas.length})</span></p>
         </div>
-        <span className=' h-fit text-[#a67c52] font-bold text-3xl cursor-pointer hover:text-[#916640] transition duration-300'>+</span>
+        <CrearTareaModal colKey={colKey} />
       </div>
       <div className='h-[80%] w-full flex flex-col items-start justify-start gap-2'>
         {tareas.map((tarea) => (
