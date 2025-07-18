@@ -34,7 +34,7 @@ const Tasks = () => {
             </div>
             <br />
             <div className=''>
-                <div className='flex items-center justify-between'>
+                <div className='flex items-center justify-between p-5 gap-4'>
                     <Box1
                         titulo="Total"
                         numero="10"
@@ -61,7 +61,7 @@ const Tasks = () => {
                     />
                 </div>
                 <br />
-                <div className='flex items-center justify-between h-fit'>
+                <div className='flex items-center justify-between h-fit p-5 gap-4'>
                     <Box2DnD colKey="total" mainIcon={<FontAwesomeIcon icon={faCircle} />} title="Por hacer" />
                     <Box2DnD colKey="enproceso" mainIcon={<FontAwesomeIcon icon={faClock} />} title="En Proceso" />
                     <Box2DnD colKey="completadas" mainIcon={<FontAwesomeIcon icon={faCircleCheck} />} title="Completadas" />
