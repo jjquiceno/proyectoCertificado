@@ -1,7 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { TextField, Button } from "@radix-ui/themes";
 
 const Login = () => {
+
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const respuesta = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      });
+
+      const data = await respuesta.json();
+
+      if (respuesta.ok) {
+        console.log('Inicio de sesion exitoso:', data);
+        navigate('/tasks');
+      } else {
+        alert(data.message);
+        console.error('Error en el login:', data.message);
+      }
+    } catch (error) {
+      console.error('Error de red o servidor:', error);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center min-h-screen bg-[#f5f3ef] text-[#3f3f3f] px-4">
       
@@ -18,18 +55,20 @@ const Login = () => {
         <p className="text-[#504033] mb-8">
           Ingresa tus credenciales para continuar.
         </p>
-        <form className='text-left'>
+        <form className='text-left' onSubmit={handleSubmit}>
           <div className='mb-4'>
             <label className="mb-2 text-sm font-bold">Email</label>
-            <TextField.Root placeholder="tu@email.com"></TextField.Root>
+            <TextField.Root type='email' required placeholder="tu@email.com" value={email}
+              onChange={(e) => setEmail(e.target.value)} ></TextField.Root>
           </div>
 
           <div className='mb-4'>
             <label className="mb-2 text-sm font-bold">Contraseña</label>
-            <TextField.Root placeholder="••••••••"></TextField.Root>
+            <TextField.Root type='password' required placeholder="••••••••" value={password}
+              onChange={(e) => setPassword(e.target.value)}></TextField.Root>
           </div>
-          <Button radius="large" color="brown" size="2" variant="soft" className='w-[20vw]'>
-            Edit profile
+          <Button type='submit' radius="large" color="brown" size="2" variant="soft" className='w-[20vw]'>
+            Iniciar sesión
           </Button>
 
         </form>

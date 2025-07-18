@@ -34,7 +34,6 @@ const Register = () => {
       if (respuesta.ok) {
         console.log('Registro exitoso:', data);
         alert('Cuenta creada con éxito');
-        // // ✅ Redirigir a otra ruta (por ejemplo: /bienvenida)
         navigate('/login');
       } else {
         alert(data.message);
@@ -61,27 +60,27 @@ const Register = () => {
         <p className="text-[#6b4e37] mb-8">
           Crea tu cuenta para comenzar
         </p>
-        <form className='text-left'>
+        <form className='text-left' onSubmit={handleSubmit}>
           <div className='mb-4'>
             <label className="mb-2 text-sm font-bold">Nombre</label>
-            <TextField.Root placeholder="Tu nombre" value={name}
+            <TextField.Root type='text' required placeholder="Tu nombre" value={name}
               onChange={(e) => setName(e.target.value)}></TextField.Root>
           </div>
 
           <div className='mb-4'>
             <label className="mb-2 text-sm font-bold">Email</label>
-            <TextField.Root placeholder="tu@email.com" value={email}
+            <TextField.Root type='email' required placeholder="tu@email.com" value={email}
               onChange={(e) => setEmail(e.target.value)}></TextField.Root>
           </div>
 
           <div className='mb-4'>
             <label className="mb-2 text-sm font-bold">Contraseña</label>
-            <TextField.Root type="password"
+            <TextField.Root type='password' required
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}></TextField.Root>
           </div>
-          <Button onClick={handleSubmit} radius="large" color="brown" size="2" variant="soft" className='w-[20vw]'>
+          <Button type='submit' radius="large" color="brown" size="2" variant="soft" className='w-[20vw]'>
             Crear cuenta
           </Button>
 

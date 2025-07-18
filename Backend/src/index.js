@@ -82,6 +82,37 @@ app.post('/users', async (req, res) => {
   }
 });
 
+//Logear usuario
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const [rows] = await pool.query('SELECT * FROM usuarios WHERE email = ?', [email]);
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'Email no encontrado' });
+    }
+
+    const usuario = rows[0];
+
+    if (usuario.password !== password) {
+      return res.status(401).json({ message: 'Contraseña incorrecta' });
+    }
+
+    res.status(200).json({
+      message: 'Inicio de sesión exitoso',
+      user: {
+        id: usuario.id,
+        name: usuario.name,
+        email: usuario.email
+      }
+    });
+
+  } catch (error) {
+    res.status(500).json({ message: 'Error en el servidor', error: error.message });
+  }
+});
+
 // 🤓 ❤️ ♠️ 🍀  // new
 // Actualizar usuario
 app.put('/users/:id', async (req, res) => {
