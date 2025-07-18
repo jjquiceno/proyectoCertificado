@@ -6,26 +6,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBullseye, faChartSimple, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faCircleCheck, faClock, faCircle, } from '@fortawesome/free-regular-svg-icons';
 
-import { useNavigate } from 'react-router-dom';
+import { HeaderTasks } from '../components/Header';
 
 const Tasks = () => {
 
-    const navigate = useNavigate();
+    
 
     const nombre = localStorage.getItem('userName');
 
-    const handleLogout = () => {
-        localStorage.clear();
-        navigate('/login');
-    };
     return (
         <div>
-            <div className=''>
+            <HeaderTasks />
+            <div className='p-10'>
                 <div>
                     <h1 className="h-fit pb-2 text-4xl font-bold text-[#6f725b]">
                         ¡Hola, {nombre}! ꕥ
                     </h1>
-                    <FontAwesomeIcon icon={faRightFromBracket} className='cursor-pointer' onClick={handleLogout} />
+                    
                 </div>
                 <div className="flex items-center justify-between">
                     <p className="overline h-fit text-lg text-[#6f725b]">
