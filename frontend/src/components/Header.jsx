@@ -73,7 +73,7 @@ export const HeaderTasks = () => {
 
                 <div className="flex items-center space-x-4 text-sm gap-2">
                     <FontAwesomeIcon icon={faUser}/>
-                    <p className='-ml-5'>{nombre}</p>
+                    <p>{nombre}</p>
                     <FontAwesomeIcon icon={faRightFromBracket} className='cursor-pointer text-xl' onClick={handleLogout} />
                 </div>
             </header>
